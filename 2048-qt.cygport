@@ -1,0 +1,23 @@
+inherit qt5-qmake
+
+NAME="2048-qt"
+VERSION=0.1.6
+RELEASE=1
+CATEGORY="Games"
+SUMMARY="2048 game for Qt/KDE"
+DESCRIPTION="A clone of 2048 and variants, implemented in Qt."
+HOMEPAGE="https://github.com/xiaoyong/2048-Qt"
+SRC_URI="${HOMEPAGE}/archive/v${VERSION}/2048-Qt-v${VERSION}.tar.gz"
+SRC_DIR="2048-Qt-${VERSION}"
+
+REQUIRES="qt5-quickcontrols"
+
+src_install() {
+	cd ${B}
+	dobin 2048-qt.exe
+
+	domenu ${S}/res/2048-qt.desktop
+
+	dodir /usr/share/icons/hicolor
+	cp -pr ${S}/res/icons/*/ ${D}/usr/share/icons/hicolor/
+}
